@@ -1,4 +1,4 @@
-my_dict={}
+my_dict = {}
 my_dict['tuple'] = (1, 3, 6, 7, None, 'text')
 my_dict['list'] = [1, 3, 6, 7, None, 'text']
 my_dict['dict'] = {'jan': 31, 'feb': 28, 'mar': 31, 'apr': 30, 'may': 31}
