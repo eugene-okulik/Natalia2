@@ -9,7 +9,7 @@ print(my_dict['tuple'][-1])
 my_dict['list'].append('new_element')
 my_dict['list'].pop(1)
 
-my_dict['dict']['i am a tuple'] = (1.1, 2.2, 3.3)
+my_dict['dict'][('i am a tuple',)] = (1.1, 2.2, 3.3)
 my_dict['dict'].pop('jan')
 
 my_dict['set'].add(8)
