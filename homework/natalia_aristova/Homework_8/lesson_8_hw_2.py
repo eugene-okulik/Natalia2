@@ -1,7 +1,7 @@
 import sys
 
 
-def fibo(limit = 10):
+def fibo(limit=10):
     fn_2 = 0
     fn_1 = 1
     fn = 0
