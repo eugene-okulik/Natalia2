@@ -29,11 +29,13 @@ class Peony(Flower):
         super().__init__(name, freshness, length, price, lifespan)
         self.country = country
 
+
 first_rose = Rose('rose', 3, 15, 55, 10, 'red')
 second_rose = Rose('rose', 2, 16, 55, 11, 'white')
-first_peony = Peony('peony', 2, 20, 20,5,'Holland')
-second_peony = Peony('peony', 1, 19, 20,6,'Greece')
-third_peony = Peony('peony', 4, 21, 20,3,'Cyprus')
+first_peony = Peony('peony', 2, 20, 20, 5, 'Holland')
+second_peony = Peony('peony', 1, 19, 20, 6, 'Greece')
+third_peony = Peony('peony', 4, 21, 20, 3, 'Cyprus')
+
 
 class Bunch:
     def __init__(self, flowers):
@@ -74,5 +76,3 @@ print(bouquet.sort_by_price())
 print(bouquet.sort_by_length())
 print(bouquet.sort_by_freshness())
 print(bouquet.find_by_life())
-
-
