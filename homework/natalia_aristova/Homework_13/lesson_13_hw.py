@@ -17,4 +17,3 @@ with open(data_file_path, 'r', encoding='utf-8') as data_file:
             print(f"{date} - это {date.strftime('%A')}")
         elif 'распечатать сколько дней назад была эта дата' in line:
             print(f'{(datetime.datetime.now() - date).days} дней назад было {date}')
-
