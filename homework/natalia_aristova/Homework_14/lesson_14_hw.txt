@@ -1,0 +1,47 @@
+INSERT INTO students  (name, second_name, group_id) VALUES ('Natalia', 'Aristova', 1)
+SELECT id FROM students WHERE name = 'Natalia' and second_name = 'Aristova'
+
+INSERT INTO books  (title, taken_by_student_id) VALUES ('Forgive', 22415)
+INSERT INTO books  (title, taken_by_student_id) VALUES ('Me', 22415)
+INSERT INTO books  (title, taken_by_student_id) VALUES ('Remember', 22415)
+
+INSERT INTO `groups` (title, start_date, end_date) VALUES ('The best students', '01.12.2026', '01.06.2026')
+SELECT id from `groups` WHERE title = 'The best students'
+
+UPDATE students SET group_id = 22104 WHERE id = 22415
+
+INSERT INTO subjects (title) VALUES ('Design')
+INSERT INTO subjects (title) VALUES ('Science')
+SELECT id from subjects WHERE title = 'Design'
+SELECT id from subjects WHERE title = 'Science'
+
+INSERT INTO lessons (title, subject_id) VALUES ('Design1', (SELECT id from subjects WHERE title = 'Design'))
+INSERT INTO lessons (title, subject_id) VALUES ('Design2', (SELECT id from subjects WHERE title = 'Design'))
+INSERT INTO lessons (title, subject_id) VALUES ('Science1', (SELECT id from subjects WHERE title = 'Science' ORDER BY id DESC LIMIT 1))
+INSERT INTO lessons (title, subject_id) VALUES ('Science2', (SELECT id from subjects WHERE title = 'Science' ORDER BY id DESC LIMIT 1))
+SELECT id from lessons WHERE title = 'Design1'
+SELECT id from lessons WHERE title = 'Design2'
+SELECT id from lessons WHERE title = 'Science1'
+SELECT id from lessons WHERE title = 'Science2'
+
+INSERT INTO marks (value, lesson_id, student_id ) VALUES (5, (SELECT id from lessons WHERE title = 'Design1'), (SELECT id FROM students WHERE name = 'Natalia' and second_name = 'Aristova'))
+INSERT INTO marks (value, lesson_id, student_id ) VALUES (5, (SELECT id from lessons WHERE title = 'Design2'), (SELECT id FROM students WHERE name = 'Natalia' and second_name = 'Aristova'))
+INSERT INTO marks (value, lesson_id, student_id ) VALUES (5, (SELECT id from lessons WHERE title = 'Science1'), (SELECT id FROM students WHERE name = 'Natalia' and second_name = 'Aristova'))
+INSERT INTO marks (value, lesson_id, student_id ) VALUES (5, (SELECT id from lessons WHERE title = 'Science2'), (SELECT id FROM students WHERE name = 'Natalia' and second_name = 'Aristova'))
+
+SELECT value FROM marks WHERE student_id = (SELECT id FROM students WHERE name = 'Natalia' and second_name = 'Aristova')
+SELECT title FROM books WHERE taken_by_student_id = (SELECT id FROM students WHERE name = 'Natalia' and second_name = 'Aristova')
+
+SELECT s.name as 'Student name', s.second_name as 'Student last name', g.title as 'Group name', m.value as 'Mark', b.title as 'Book title', l.title as 'Lesson', w.title as 'Subject'
+FROM students s
+left join books b
+on s.id = b.taken_by_student_id
+left join `groups` g
+on s.group_id = g.id
+left join marks m
+on s.id = m.student_id
+left join lessons l
+on m.lesson_id = l.id
+left join subjects w
+on l.subject_id = w.id
+WHERE s.id = (SELECT id FROM students WHERE name = 'Natalia' and second_name = 'Aristova')
