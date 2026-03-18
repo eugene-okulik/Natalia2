@@ -9,7 +9,6 @@ db = mysql.connect(
     database='st-onl'
 )
 
-
 cursor = db.cursor(dictionary=True)
 add_student = 'INSERT INTO students (name, second_name) VALUES (%s, %s)'
 values_for_student = ('Abdul', 'Rehman')
@@ -46,7 +45,7 @@ cursor.executemany(add_subject, values_for_subject)
 db.commit()
 subject1_id = cursor.lastrowid
 print(subject1_id)
-subject2_id = cursor.lastrowid+1
+subject2_id = cursor.lastrowid + 1
 print(subject2_id)
 
 add_lesson = 'INSERT INTO lessons (title, subject_id) VALUES (%s, %s)'
@@ -60,11 +59,11 @@ cursor.executemany(add_lesson, values_for_lessons)
 db.commit()
 lesson1_id=cursor.lastrowid
 print(lesson1_id)
-lesson2_id=cursor.lastrowid+1
+lesson2_id=cursor.lastrowid + 1
 print(lesson2_id)
-lesson3_id=cursor.lastrowid+2
+lesson3_id=cursor.lastrowid + 2
 print(lesson3_id)
-lesson4_id=cursor.lastrowid+3
+lesson4_id=cursor.lastrowid + 3
 print(lesson4_id)
 
 add_marks = 'INSERT INTO marks (value, lesson_id, student_id ) VALUES (%s, %s, %s)'
