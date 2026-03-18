@@ -88,7 +88,7 @@ print(f'Taken books by student with id = {student_id}')
 for book in books:
     print(book['title'])
 
-all_info =''' SELECT s.name as 'Student name', s.second_name as 'Student last name', 
+all_info = ''' SELECT s.name as 'Student name', s.second_name as 'Student last name',
 g.title as 'Group name', m.value as 'Mark', b.title as 'Book title', l.title as 'Lesson', w.title as 'Subject'
 FROM students s
 left join books b
