@@ -49,7 +49,7 @@ subject2_id = cursor.lastrowid + 1
 print(subject2_id)
 
 add_lesson = 'INSERT INTO lessons (title, subject_id) VALUES (%s, %s)'
-values_for_lessons=[
+values_for_lessons = [
     ('1-1', subject1_id),
     ('1-2', subject1_id),
     ('2-1', subject2_id),
@@ -57,13 +57,13 @@ values_for_lessons=[
 ]
 cursor.executemany(add_lesson, values_for_lessons)
 db.commit()
-lesson1_id=cursor.lastrowid
+lesson1_id = cursor.lastrowid
 print(lesson1_id)
-lesson2_id=cursor.lastrowid + 1
+lesson2_id = cursor.lastrowid + 1
 print(lesson2_id)
-lesson3_id=cursor.lastrowid + 2
+lesson3_id = cursor.lastrowid + 2
 print(lesson3_id)
-lesson4_id=cursor.lastrowid + 3
+lesson4_id = cursor.lastrowid + 3
 print(lesson4_id)
 
 add_marks = 'INSERT INTO marks (value, lesson_id, student_id ) VALUES (%s, %s, %s)'
@@ -88,7 +88,7 @@ print(f'Taken books by student with id = {student_id}')
 for book in books:
     print(book['title'])
 
-all_info = ''' SELECT s.name as 'Student name', s.second_name as 'Student last name', 
+all_info =''' SELECT s.name as 'Student name', s.second_name as 'Student last name', 
 g.title as 'Group name', m.value as 'Mark', b.title as 'Book title', l.title as 'Lesson', w.title as 'Subject'
 FROM students s
 left join books b
