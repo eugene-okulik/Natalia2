@@ -9,6 +9,7 @@ db = mysql.connect(
     database='st-onl'
 )
 
+
 cursor = db.cursor(dictionary=True)
 add_student = 'INSERT INTO students (name, second_name) VALUES (%s, %s)'
 values_for_student = ('Abdul', 'Rehman')
@@ -66,7 +67,6 @@ print(lesson3_id)
 lesson4_id=cursor.lastrowid+3
 print(lesson4_id)
 
-
 add_marks = 'INSERT INTO marks (value, lesson_id, student_id ) VALUES (%s, %s, %s)'
 values_for_marks = [
     (3, lesson1_id, student_id),
@@ -89,7 +89,7 @@ print(f'Taken books by student with id = {student_id}')
 for book in books:
     print(book['title'])
 
-all_info =''' SELECT s.name as 'Student name', s.second_name as 'Student last name', 
+all_info = ''' SELECT s.name as 'Student name', s.second_name as 'Student last name', 
 g.title as 'Group name', m.value as 'Mark', b.title as 'Book title', l.title as 'Lesson', w.title as 'Subject'
 FROM students s
 left join books b
