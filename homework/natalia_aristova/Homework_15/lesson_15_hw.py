@@ -37,34 +37,28 @@ cursor.execute(update_students_group, values_for_update_group)
 db.commit()
 
 add_subject = 'INSERT INTO subjects (title) VALUES (%s)'
-values_for_subject = [
-    ('Bio',),
-    ('Geo',)
-]
-cursor.executemany(add_subject, values_for_subject)
+cursor.execute(add_subject, ('Math',))
 db.commit()
 subject1_id = cursor.lastrowid
 print(subject1_id)
-subject2_id = cursor.lastrowid + 1
+cursor.execute(add_subject, ('Geometry',))
+db.commit()
+subject2_id = cursor.lastrowid
 print(subject2_id)
 
 add_lesson = 'INSERT INTO lessons (title, subject_id) VALUES (%s, %s)'
-values_for_lessons = [
-    ('1-1', subject1_id),
-    ('1-2', subject1_id),
-    ('2-1', subject2_id),
-    ('2-2', subject2_id)
-]
-cursor.executemany(add_lesson, values_for_lessons)
+cursor.execute(add_lesson, ('1-1', subject1_id))
 db.commit()
 lesson1_id = cursor.lastrowid
-print(lesson1_id)
-lesson2_id = cursor.lastrowid + 1
-print(lesson2_id)
-lesson3_id = cursor.lastrowid + 2
-print(lesson3_id)
-lesson4_id = cursor.lastrowid + 3
-print(lesson4_id)
+cursor.execute(add_lesson, ('1-2', subject1_id))
+db.commit()
+lesson2_id = cursor.lastrowid
+cursor.execute(add_lesson, ('2-1', subject2_id))
+db.commit()
+lesson3_id = cursor.lastrowid
+cursor.execute(add_lesson, ('2-2', subject2_id))
+db.commit()
+lesson4_id = cursor.lastrowid
 
 add_marks = 'INSERT INTO marks (value, lesson_id, student_id ) VALUES (%s, %s, %s)'
 values_for_marks = [
