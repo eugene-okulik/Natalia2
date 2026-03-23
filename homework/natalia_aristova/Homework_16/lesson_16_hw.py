@@ -22,7 +22,7 @@ hw_data_folder = os.path.join(eugene_okulik_folder, 'Lesson_16')
 data_file_path = os.path.join(hw_data_folder, 'hw_data', 'data.csv')
 print(data_file_path)
 
-all_info ='''SELECT s.name, s.second_name, g.title as 'group_title', b.title as 'book_title',
+all_info = '''SELECT s.name, s.second_name, g.title as 'group_title', b.title as 'book_title',
 w.title as 'subject_title', l.title as 'lesson_title',  m.value as 'mark_value'
 FROM students s
 left join books b
