@@ -9,10 +9,12 @@ db = mysql.connect(
     database='st-onl'
 )
 
+
 def execute_query(query, data):
     cursor.execute(query, data)
     db.commit()
     return cursor.lastrowid
+
 
 cursor = db.cursor(dictionary=True)
 add_student = 'INSERT INTO students (name, second_name) VALUES (%s, %s)'
