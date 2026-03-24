@@ -9,6 +9,11 @@ db = mysql.connect(
     database='st-onl'
 )
 
+def execute_query(query, data):
+    cursor.execute(query, data)
+    db.commit()
+    return cursor.lastrowid
+
 cursor = db.cursor(dictionary=True)
 add_student = 'INSERT INTO students (name, second_name) VALUES (%s, %s)'
 values_for_student = ('Abdul', 'Rehman')
@@ -37,35 +42,35 @@ cursor.execute(update_students_group, values_for_update_group)
 db.commit()
 
 add_subject = 'INSERT INTO subjects (title) VALUES (%s)'
-cursor.execute(add_subject, ('Math',))
-db.commit()
-subject1_id = cursor.lastrowid
-print(subject1_id)
-cursor.execute(add_subject, ('Geometry',))
-db.commit()
-subject2_id = cursor.lastrowid
-print(subject2_id)
+values_for_subject = [
+    ('Math',),
+    ('Geometry',)
+]
+
+subject_ids = []
+for i in values_for_subject:
+    subject_id = execute_query(add_subject, i)
+    subject_ids.append(subject_id)
 
 add_lesson = 'INSERT INTO lessons (title, subject_id) VALUES (%s, %s)'
-cursor.execute(add_lesson, ('1-1', subject1_id))
-db.commit()
-lesson1_id = cursor.lastrowid
-cursor.execute(add_lesson, ('1-2', subject1_id))
-db.commit()
-lesson2_id = cursor.lastrowid
-cursor.execute(add_lesson, ('2-1', subject2_id))
-db.commit()
-lesson3_id = cursor.lastrowid
-cursor.execute(add_lesson, ('2-2', subject2_id))
-db.commit()
-lesson4_id = cursor.lastrowid
+values_for_lessons = [
+    ('1-1', subject_ids[0]),
+    ('1-2', subject_ids[0]),
+    ('2-1', subject_ids[1]),
+    ('2-2', subject_ids[1])
+]
+
+lesson_ids = []
+for i in values_for_lessons:
+    lesson_id = execute_query(add_lesson, i)
+    lesson_ids.append(lesson_id)
 
 add_marks = 'INSERT INTO marks (value, lesson_id, student_id ) VALUES (%s, %s, %s)'
 values_for_marks = [
-    (3, lesson1_id, student_id),
-    (4, lesson2_id, student_id),
-    (5, lesson3_id, student_id),
-    (5, lesson4_id, student_id)
+    (3, lesson_ids[0], student_id),
+    (4, lesson_ids[1], student_id),
+    (5, lesson_ids[2], student_id),
+    (5, lesson_ids[3], student_id)
 ]
 cursor.executemany(add_marks, values_for_marks)
 db.commit()
