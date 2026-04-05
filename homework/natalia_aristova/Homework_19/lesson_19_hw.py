@@ -31,10 +31,7 @@ def one_object():
 
 
 def post_an_object():
-    body = {"data": {
-                "color": "red",
-                "size": "small"
-            },
+    body = {"data": {"color": "red", "size": "small"},
             "name": "My object"}
     headers = {'Content-Type': 'application/json'}
     response = requests.post('http://objapi.course.qa-practice.com/object', json=body, headers=headers)
@@ -44,10 +41,7 @@ def post_an_object():
 def put_an_object():
     post_id = new_object()
     print(post_id)
-    body = {"data": {
-                "color": "red",
-                "size": "small2"
-            },
+    body = {"data": {"color": "red", "size": "small2"},
             "name": "My object3"}
     headers = {'Content-Type': 'application/json'}
     response = requests.put(f'http://objapi.course.qa-practice.com/object/{post_id}',
@@ -56,15 +50,13 @@ def put_an_object():
     print(response.json())
     assert response.status_code == 200, 'Status code is incorrect'
     assert response.json()['name'] == 'My object3', 'Name is incorrect'
-    assert response.json()['id'] == str(post_id), 'ID is incorrect' # пришлось в стр переводить, чтобы проверка прошла
+    assert response.json()['id'] == str(post_id), 'ID is incorrect'  # пришлось в стр переводить, чтобы проверка прошла
     clear(post_id)
 
 
 def patch_an_object():
     post_id = new_object()
-    body = {"data": {
-                "size": "small23"
-            },
+    body = {"data": {"size": "small23"},
             "name": "My object45"}
     headers = {'Content-Type': 'application/json'}
     response = requests.patch(f'http://objapi.course.qa-practice.com/object/{post_id}',
