@@ -36,7 +36,7 @@ def test_one_object(new_object_id):
 @pytest.mark.medium
 @pytest.mark.parametrize('body', [{"data": {"color": "red", "size": "small"}, "name": "My object"},
                                   {"data": {"color": "blue", "size": "big"}, "name": "My object2"},
-                                  {"data": {"color": "green", "size": "large"},"name": "My object3"}])
+                                  {"data": {"color": "green", "size": "large"}, "name": "My object3"}])
 def test_post_an_object(body):
     headers = {'Content-Type': 'application/json'}
     response = requests.post('http://objapi.course.qa-practice.com/object', json=body, headers=headers)
