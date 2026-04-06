@@ -1,6 +1,7 @@
 import requests
 import pytest
 
+
 @pytest.fixture()
 def new_object_id():
     print('before test')
@@ -31,15 +32,16 @@ def test_one_object(new_object_id):
     assert response.status_code == 200, 'Status code is incorrect'
     assert response.json()['id'] == new_object_id, 'ID is incorrect'
 
+
 @pytest.mark.medium
-@pytest.mark.parametrize('body', [{"data": {"color": "red", "size": "small"},
-            "name": "My object"}, {"data": {"color": "blue", "size": "big"},
-            "name": "My object2"}, {"data": {"color": "green", "size": "large"},
-            "name": "My object3"}] )
+@pytest.mark.parametrize('body', [{"data": {"color": "red", "size": "small"}, "name": "My object"},
+                                  {"data": {"color": "blue", "size": "big"}, "name": "My object2"},
+                                  {"data": {"color": "green", "size": "large"},"name": "My object3"}])
 def test_post_an_object(body):
     headers = {'Content-Type': 'application/json'}
     response = requests.post('http://objapi.course.qa-practice.com/object', json=body, headers=headers)
     assert response.status_code == 200, 'Status code is incorrect'
+
 
 @pytest.mark.critical
 def test_put_an_object(new_object_id):
@@ -52,7 +54,7 @@ def test_put_an_object(new_object_id):
     print(response.json())
     assert response.status_code == 200, 'Status code is incorrect'
     assert response.json()['name'] == 'My object3', 'Name is incorrect'
-    assert response.json()['id'] == str(new_object_id), 'ID is incorrect'  # пришлось в стр переводить, чтобы проверка прошла
+    assert response.json()['id'] == str(new_object_id), 'ID is incorrect'
 
 
 def test_patch_an_object(new_object_id):
