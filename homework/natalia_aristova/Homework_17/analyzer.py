@@ -25,6 +25,7 @@ else:
 
 data = {}
 
+
 def get_date_from_line(line_content):
     if len(line_content) >= 23:
         date_candidate = line_content[:23]
