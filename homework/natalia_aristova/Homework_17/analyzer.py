@@ -36,6 +36,7 @@ def get_date_from_line(line_content):
             pass
     return None
 
+
 for i in files:
     with open(i, encoding='utf-8') as log_file:
         print(i)
