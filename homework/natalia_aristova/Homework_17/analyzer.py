@@ -36,16 +36,16 @@ def get_date_from_line(line_content):
             pass
     return None
 
-
-with open(files[0], encoding='utf-8') as log_file:
-    print(files[0])
-    for i, line in enumerate(log_file.readlines()[0:35]):
-        line_date = get_date_from_line(line)
-        if line_date:
-            date_key = line_date
-            data[line_date] = line
-        else:
-            data[date_key] += line
+for i in files:
+    with open(i, encoding='utf-8') as log_file:
+        print(i)
+        for line in log_file:
+            line_date = get_date_from_line(line)
+            if line_date:
+                date_key = line_date
+                data[line_date] = line
+            else:
+                data[date_key] += line
 
 for key, entry in data.items():
     if word_to_find in entry:
