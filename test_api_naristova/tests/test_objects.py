@@ -19,9 +19,10 @@ def hello():
     yield
     print('Testing completed')
 
+
 TEST_DATA = [{"data": {"color": "red", "size": "small"}, "name": "My object"},
-                                  {"data": {"color": "blue", "size": "big"}, "name": "My object2"},
-                                  {"data": {"color": "green", "size": "large"}, "name": "My object3"}]
+             {"data": {"color": "blue", "size": "big"}, "name": "My object2"},
+             {"data": {"color": "green", "size": "large"}, "name": "My object3"}]
 
 
 @allure.feature('Viewing objects')
@@ -56,8 +57,7 @@ def test_post_an_object(create_post_endpoint, body):
 @allure.title('Changing object')
 @pytest.mark.critical
 def test_put_an_object(update_object_endpoint, new_object_id):
-    body = {"data": {"color": "red", "size": "small2"},
-                "name": "My object3"}
+    body = {"data": {"color": "red", "size": "small2"}, "name": "My object3"}
     update_object_endpoint.make_changes_in_object(new_object_id, body)
     update_object_endpoint.check_response_status_code_is_correct()
     update_object_endpoint.check_response_name_is_correct(body['name'])
@@ -66,7 +66,10 @@ def test_put_an_object(update_object_endpoint, new_object_id):
 @allure.feature('Objects managing')
 @allure.story('PATCH request')
 @allure.title('Changing object - patch')
-@allure.issue('https://ya.ru/images/search?pos=0&from=tabbar&img_url=https%3A%2F%2Fimg.freepik.com%2Ffree-photo%2Fcute-kitten-sitting-staring-playful-fluffy-looking-camera-generated-by-artificial-intelligence_188544-113029.jpg%3Fsemt%3Dais_hybrid%26w%3D740&text=%D0%9A%D0%9E%D0%A2%D0%98%D0%9A&rpt=simage&lr=20575', 'st-2')
+@allure.issue('https://ya.ru/images/search?pos=0&from=tabbar&img_url=https%3A%2F%2Fimg.freepik.com%2Ffree-'
+              'photo%2Fcute-kitten-sitting-staring-playful-fluffy-looking-camera-generated-by-artificial-intelligence'
+              '_188544-113029.jpg%3Fsemt%3Dais_hybrid%26w%3D740&text=%D0%9A%D0%9E%D0%A2%D0%98%D0%9A&rpt'
+              '=simage&lr=20575', 'st-2')
 @allure.description('Changing object size and object name')
 def test_patch_an_object(patch_object_endpoint, new_object_id):
     with allure.step('Prepare test data'):

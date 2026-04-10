@@ -5,7 +5,6 @@ import allure
 
 class GetObject(Endpoint):
 
-
     @allure.step('Get all objects')
     def get_all_objects(self):
         self.response = requests.get(self.url)

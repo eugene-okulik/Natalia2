@@ -5,7 +5,6 @@ import allure
 
 class PostObject(Endpoint):
 
-
     @allure.step('Create new object')
     def create_new_object(self, body, headers=None):
         headers = headers if headers else self.headers

@@ -25,6 +25,7 @@ def get_object_endpoint():
 def patch_object_endpoint():
     return PatchObject()
 
+
 @pytest.fixture()
 def delete_object_endpoint():
     return DeleteObject()

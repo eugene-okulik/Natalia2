@@ -7,11 +7,9 @@ class Endpoint:
     json = None
     headers = {'Content-Type': 'application/json'}
 
-
     @allure.step('Check that status code is 200')
     def check_response_status_code_is_correct(self):
         assert self.response.status_code == 200, 'Status code is incorrect'
-
 
     @allure.step('Check that name is the same name as sent')
     def check_response_name_is_correct(self, name):
