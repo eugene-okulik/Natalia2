@@ -2,24 +2,6 @@ import pytest
 import allure
 
 
-@pytest.fixture()
-def new_object_id(create_post_endpoint, delete_object_endpoint):
-    print('before test')
-    body = {"data": {"color": "red", "size": "small"}, "name": "My object"}
-    create_post_endpoint.create_new_object(body=body)
-    object_id = create_post_endpoint.json()['id']
-    yield object_id
-    print('after test')
-    delete_object_endpoint.delete_object(object_id)
-
-
-@pytest.fixture(scope='session')
-def hello():
-    print('Start testing')
-    yield
-    print('Testing completed')
-
-
 TEST_DATA = [{"data": {"color": "red", "size": "small"}, "name": "My object"},
              {"data": {"color": "blue", "size": "big"}, "name": "My object2"},
              {"data": {"color": "green", "size": "large"}, "name": "My object3"}]
@@ -83,7 +65,7 @@ def test_patch_an_object(patch_object_endpoint, new_object_id):
 
 @allure.feature('Objects managing')
 @allure.story('DELETE request')
-@allure.title('Delleting object')
+@allure.title('Deleting object')
 def test_delete_an_object(delete_object_endpoint, new_object_id):
     delete_object_endpoint.delete_object(new_object_id)
     delete_object_endpoint.check_response_status_code_is_correct()
