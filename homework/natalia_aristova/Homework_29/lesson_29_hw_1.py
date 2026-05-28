@@ -8,5 +8,5 @@ def test_alert(page: Page):
     page.on('dialog', accept_alert)
     page.goto('https://www.qa-practice.com/elements/alert/confirm')
     page.locator('//*[@href="#"]').click()
-    result_text =  page.locator('#result-text')
+    result_text = page.locator('#result-text')
     expect(result_text).to_have_text('Ok')
