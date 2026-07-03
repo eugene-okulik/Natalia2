@@ -17,4 +17,3 @@ def test_selected_table_is_displayed_in_modal(category_page):
     category_page.open_page()
     category_page.add_item_to_cart()
     category_page.check_added_item()
-
