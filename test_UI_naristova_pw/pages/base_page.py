@@ -1,0 +1,31 @@
+from playwright.sync_api import Page, Locator
+
+
+class BasePage:
+    base_url = 'http://testshop.qa-practice.com/'
+    page_url = None
+
+    def __init__(self, page: Page):
+        self.page = page
+
+
+    def open_page(self):
+        if self.page_url:
+            self.page.goto(f'{self.base_url}{self.page_url}')
+        else:
+            raise NotImplementedError('Page can not be opened for this page class')
+
+
+    def find(self, locator) -> Locator:
+        return self.page.locator(locator)
+
+
+    def breadcrumbs(self, locator):
+        crumbs = self.find(locator)
+        return crumbs.text_content()
+
+
+    def search(self, locator, text):
+        search_field = self.find(locator)
+        search_field.fill(text)
+        search_field.press('Enter')
