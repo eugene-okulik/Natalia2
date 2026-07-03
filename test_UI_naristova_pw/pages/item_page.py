@@ -10,19 +10,15 @@ class Item(BasePage):
         add_button = self.find(item_loc.plus_button)
         add_button.click()
 
-
     def remove_item(self):
         minus_button = self.find(item_loc.remove_button)
         minus_button.click()
 
-
     def assert_item_amount(self, number):
         expect(self.find(item_loc.items_amount)).to_have_value(str(number))
 
-
     def get_breadcrumbs(self):
         return self.breadcrumbs(item_loc.breadcrumbs)
-
 
     def check_breadcrumbs(self):
         breadcrumbs_text = self.get_breadcrumbs()

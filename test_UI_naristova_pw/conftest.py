@@ -4,6 +4,7 @@ from test_UI_naristova_pw.pages.category_page import Category
 from test_UI_naristova_pw.pages.item_page import Item
 import pytest
 
+
 @pytest.fixture()
 def cart_page(page):
     return Cart(page)
