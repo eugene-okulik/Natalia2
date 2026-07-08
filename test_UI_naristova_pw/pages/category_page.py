@@ -11,7 +11,7 @@ class Category(BasePage):
 
     def check_search_alert(self, text):
         found_item = self.find(cat_loc.found_table).first
-        assert text in found_item.text_content()
+        expect(found_item).to_contain_text(text)
 
     def click_checkbox(self, locator):
         checkbox = self.find(locator)
@@ -19,7 +19,7 @@ class Category(BasePage):
 
     def check_item(self, locator, text):
         found_item = self.find(locator).first
-        assert found_item.text_content() == text
+        expect(found_item).to_have_text(text)
 
     def add_item_to_cart(self):
         cart = self.find(cat_loc.cart).first
@@ -30,4 +30,5 @@ class Category(BasePage):
     def check_added_item(self):
         table_name = self.find(cat_loc.table_name).first
         modal = self.find(cat_loc.modal)
-        assert table_name.text_content() in modal.text_content()
+        table_name_text = table_name.text_content()
+        expect(modal).to_contain_text(table_name_text)

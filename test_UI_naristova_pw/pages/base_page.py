@@ -19,7 +19,7 @@ class BasePage:
 
     def breadcrumbs(self, locator):
         crumbs = self.find(locator)
-        return crumbs.text_content()
+        return crumbs
 
     def search(self, locator, text):
         search_field = self.find(locator)

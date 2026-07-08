@@ -8,7 +8,7 @@ class Cart(BasePage):
 
     def check_empty_cart_text(self):
         text_window = self.find(loc.empty_cart_text_loc)
-        assert 'Your cart is empty!' in text_window.text_content()
+        expect(text_window).to_contain_text('Your cart is empty!')
 
     def open_search_field(self):
         loupe = self.find(loc.loupe_loc)
@@ -27,9 +27,9 @@ class Cart(BasePage):
 
     def check_breadcrumbs(self):
         breadcrumbs_text = self.get_breadcrumbs()
-        assert 'Order' in breadcrumbs_text
-        assert 'Shipping' in breadcrumbs_text
-        assert 'Payment' in breadcrumbs_text
+        expect(breadcrumbs_text).to_contain_text('Order')
+        expect(breadcrumbs_text).to_contain_text('Shipping')
+        expect(breadcrumbs_text).to_contain_text('Payment')
 
     def cart_page_title(self):
         title = self.find(loc.cart_title_loc)

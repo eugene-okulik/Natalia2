@@ -22,6 +22,6 @@ class Item(BasePage):
 
     def check_breadcrumbs(self):
         breadcrumbs_text = self.get_breadcrumbs()
-        assert 'All Products' in breadcrumbs_text
-        assert 'Multimedia' in breadcrumbs_text
-        assert 'Office Design Software' in breadcrumbs_text
+        expect(breadcrumbs_text).to_contain_text('All Products')
+        expect(breadcrumbs_text).to_contain_text('Multimedia')
+        expect(breadcrumbs_text).to_contain_text('Office Design Software')
